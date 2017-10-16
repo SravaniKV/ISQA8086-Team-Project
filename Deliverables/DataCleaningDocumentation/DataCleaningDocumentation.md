@@ -94,4 +94,23 @@ Assuming the data with respect to 2013, the parameters are hence analyzed.
 3.Also we have deleted the irrevelant or unnecessary column and double-checked for data duplicacies and their existence and ensure their validaity with respect to the data evaluation. This also involved redefining and understanding the end-goals in the data cleaning thereby we have deleted the unstandardized data.
 
 ## Step-by-step Description of Data Cleaning Process for Replication
-
+Below are the sequence of steps followed in cleaning the data.
+As part of cleaning, we used R script:
+To get the current working drectory:
+getwd()
+to set the working directory to the desired location:
+setwd("C:/Users/user/Desktop/ISQA8086-2 Adrea Wigins/")
+loading the desired files to the data frame "data":
+data<-read.csv("500_Cities__Local_Data_for_Better_Health2013_Clean.csv", header = T , na.strings = c("", "NA"))
+To view the loaded data drame:
+view(data)
+To removed the unwanted columns from the loaded data frame and making a new data frame:
+clean_data<-subset(data, select = -c(6,8,11,12,13,18,19,20))
+Renaming the column "Data_Value" to Data_Value in %, as the entire column values reflect percentages:
+colnames(clean_data)[colnames(clean_data)=="Data_Value"]<-"Data_Value(in%)"
+Changing the "NA" values in "PopulationCount" Column to "Unknown" :
+clean_data[["PopulationCount"]][is.na(clean_data[["PopulationCount"]])] <- "Unknown"
+To view the top 6 rows of our working dataframe:
+head(clean_data)
+To view the entire dataframe:
+View(clean_data)
